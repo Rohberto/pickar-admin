@@ -12,6 +12,7 @@ import {
   storeAuthSession,
 } from "@/service/auth.service";
 import { urlConfig } from "../../../config";
+import { Spinner } from "../ui/spinner";
 
 const { apiUrl } = urlConfig;
 const apiEndpoint = apiUrl + "auth";
@@ -94,7 +95,7 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
   if (authState === "loading") {
     return (
       <div className="flex h-screen w-full items-center justify-center">
-        <span className="text-sm text-gray-400">Verifying session...</span>
+        <Spinner className="size-8 text-[#861313]" />
       </div>
     );
   }

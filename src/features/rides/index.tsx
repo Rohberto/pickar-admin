@@ -7,6 +7,7 @@ import { getAllRides } from "@/service/rides.service";
 import { useState } from "react";
 import { getRidesStatFromRidesData } from "@/utils/data-selector";
 import { DialogLoader } from "@/components/shared/dialog-loader";
+import NoRecord from "@/components/shared/table-empty-state";
 
 const Rides = () => {
   const [page, setPage] = useState(1);
@@ -39,11 +40,15 @@ const Rides = () => {
               );
             })}
           </div>
-          <RidesList
-            rides={ridesListData}
-            paginationDetails={ridesData?.pagination}
-            setCurrentPage={setPage}
-          />
+          {ridesListData?.length > 0 ? (
+            <RidesList
+              rides={ridesListData}
+              paginationDetails={ridesData?.pagination}
+              setCurrentPage={setPage}
+            />
+          ) : (
+            <NoRecord />
+          )}
         </div>
       )}
     </>

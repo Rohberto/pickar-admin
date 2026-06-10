@@ -7,6 +7,7 @@ import { getAllUsers } from "@/service/users.service";
 import { getUsersStatsFromUsersData } from "@/utils/data-selector";
 import StatCard from "./stats";
 import { DialogLoader } from "@/components/shared/dialog-loader";
+import NoRecord from "@/components/shared/table-empty-state";
 
 const Users = () => {
   const [page, setPage] = useState(1);
@@ -40,11 +41,15 @@ const Users = () => {
               );
             })}
           </div>
-          <UsersList
-            users={users}
-            paginationDetails={paginationDetails}
-            setCurrentPage={setPage}
-          />
+          {users?.length > 0 ? (
+            <UsersList
+              users={users}
+              paginationDetails={paginationDetails}
+              setCurrentPage={setPage}
+            />
+          ) : (
+            <NoRecord />
+          )}
         </div>
       )}
     </>

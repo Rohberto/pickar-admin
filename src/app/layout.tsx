@@ -3,6 +3,7 @@ import "./globals.css";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Providers from "./providers";
+import StyledComponentsRegistry from "./StyledComponentsRegistry";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -25,7 +26,9 @@ export default function RootLayout({
       className={cn("font-sans", geist.variable)}
     >
       <body suppressHydrationWarning>
-        <Providers>{children}</Providers>
+        <StyledComponentsRegistry>
+          <Providers>{children}</Providers>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
